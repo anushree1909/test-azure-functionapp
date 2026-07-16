@@ -56,13 +56,12 @@ jobs:
         with:
           name: node-app
       
-      - name: Login to Azure
-        uses: azure/login@v2
+      - name: Deploy to Azure Functions
+        uses: Azure/functions-action@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_47E8D36FF108406CB1E014CC2D15F7E4 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6FF61AE9543A414587595C3E90AE101C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7468C7E748014D1E988AEA237631A3CE }}
-
+          app-name: app-1
+          package: .
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
